@@ -21,6 +21,7 @@ const TextInput = ({
     return (
         <TextField 
             {...props}
+            style={{ width: "100%" }}
             variant={variant}
             value={value}
             onChange={(e) => {
