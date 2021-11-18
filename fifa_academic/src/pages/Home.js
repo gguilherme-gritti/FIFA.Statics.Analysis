@@ -34,6 +34,7 @@ import { HomeContainer, Main, Panel, Team } from "./styles/Home";
 import { Chip, Container, FormControl, Grid, Paper } from "@mui/material";
 import { playerImage } from "../repositories/fifa/PlayerRep";
 import Statics from "./Statics";
+import MoreInfo from "./MoreInfo";
 
 const imgs = [
   "https://www.seekpng.com/png/detail/607-6072606_silhueta-jogador-de-futebol-png-clipart-2018-world.png",
@@ -60,6 +61,7 @@ const Home = () => {
   const { handleSearch, getBase64 } = useHomeController();
 
   const [open, setOpen] = useState(false);
+  const [moreInfo,setMoreInfo] = useState(false);
   const [dataPlayer, setDataPlayer] = useState([]);
 
   useEffect(() => {
@@ -70,6 +72,14 @@ const Home = () => {
     setDataPlayer(dataPlayer);
     setOpen(true);
   };
+
+  const handleSite = () => {
+    window.open("https://www.ea.com/pt-br/games/fifa/fifa-22/buy?gclid=Cj0KCQiAkNiMBhCxARIsAIDDKNWVP9dTNQObt4fTQk4943R58XMDvbU6hIXhPd0uEAjTh4L4g4ZdgoIaAgqYEALw_wcB&gclsrc=aw.ds")
+  }
+
+  const handleKnow = () => {
+    window.open("https://futdb.app");
+  }
 
   const nextSearch = async () => {
     try {
@@ -123,6 +133,9 @@ const Home = () => {
       {open && (
         <Statics open={open} setOpen={setOpen} dataPlayer={dataPlayer} />
       )}
+      {moreInfo && (
+        <MoreInfo open={moreInfo} setOpen={setMoreInfo} />
+      )}
       <Main>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
@@ -161,10 +174,10 @@ const Home = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" variant="contained">
+                    <Button size="small" variant="contained" onClick={handleSite}>
                       Ir ao Site Oficial
                     </Button>
-                    <Button size="small" variant="contained">
+                    <Button size="small" variant="contained" onClick={()=> setMoreInfo(true)}>
                       Mais Informações
                     </Button>
                   </CardActions>
@@ -186,7 +199,7 @@ const Home = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" variant="contained">
+                    <Button size="small" variant="contained" onClick={handleKnow}>
                       Saiba Como
                     </Button>
                   </CardActions>

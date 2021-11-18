@@ -73,4 +73,6 @@ export const path = "https://futdb.app/api";
 
 export const headers = new Headers();
 
-headers.append("X-AUTH-TOKEN", "3074d774-6705-4c27-8207-b37cc1ae2dbf");
+headers.append("X-AUTH-TOKEN", "987a457a-b369-43e6-84c2-70d78d68cdf7");
+// 987a457a-b369-43e6-84c2-70d78d68cdf7
+// 3074d774-6705-4c27-8207-b37cc1ae2dbf
