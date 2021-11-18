@@ -240,13 +240,15 @@ const Home = () => {
                           </Typography>
                         </CardContent>
                       </Box>
-                      {images[row.id] && (
+                      {images[row.id] ? (
                         <CardMedia
                           sx={{ height: 150 }}
                           component="img"
                           image={images[row.id]}
                           // image={imgs[parseInt(Math.random() * (5 - 1) + 1)]}
                         />
+                      ) : (
+                        <Skeleton variant="circular" width={40} height={40} />
                       )}
                     </Card>
                   )}
