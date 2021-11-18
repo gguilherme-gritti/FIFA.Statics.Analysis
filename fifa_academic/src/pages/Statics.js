@@ -42,7 +42,6 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(dataPlayer);
 
   return (
     <Dialog

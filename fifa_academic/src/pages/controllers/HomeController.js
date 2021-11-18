@@ -8,8 +8,16 @@ import { FifaContext } from "../contexts/FifaContext";
 import { find } from "../../repositories/fifa/PlayerRep";
 
 export default function useHomeController() {
-  const { fifa, setFifa, loading, setLoading, players, setPlayers } =
-    useContext(FifaContext);
+  const {
+    fifa,
+    setFifa,
+    page,
+    setPage,
+    loading,
+    setLoading,
+    players,
+    setPlayers,
+  } = useContext(FifaContext);
 
   const handleSearch = async () => {
     try {
@@ -19,6 +27,7 @@ export default function useHomeController() {
 
       if (dataFifa?.items.length) {
         setPlayers(dataFifa.items);
+        setPage(dataFifa.page);
       }
       console.log(dataFifa);
     } catch (error) {

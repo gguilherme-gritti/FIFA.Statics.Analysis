@@ -22,6 +22,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Skeleton } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+
+import { find } from "../repositories/fifa/PlayerRep";
 
 import Slide from "@mui/material/Slide";
 
@@ -51,6 +54,8 @@ const Home = () => {
     setPlayers,
     images,
     setImages,
+    page,
+    setPage,
   } = useContext(FifaContext);
   const { handleSearch, getBase64 } = useHomeController();
 
@@ -62,10 +67,56 @@ const Home = () => {
   }, []);
 
   const handleClickOpen = (dataPlayer) => {
-    console.log(dataPlayer);
     setDataPlayer(dataPlayer);
     setOpen(true);
   };
+
+  const nextSearch = async () => {
+    try {
+      setLoading(true);
+
+      const dataFifa = await find(page + 1);
+
+      if (dataFifa?.items.length) {
+        setPlayers(dataFifa.items);
+        setPage(dataFifa.page);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const prevSearch = async () => {
+    try {
+      setLoading(true);
+
+      const dataFifa = await find(page - 1);
+
+      if (dataFifa?.items.length) {
+        setPlayers(dataFifa.items);
+        setPage(dataFifa.page);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getImages = async () => {
+    let json = {};
+    for (const iterator of players) {
+      json[iterator.id] = URL.createObjectURL(await playerImage(iterator.id));
+    }
+    console.log(json);
+    setImages(json);
+  };
+
+  useEffect(() => {
+    getImages();
+  }, [players]);
 
   return (
     <>
@@ -141,7 +192,7 @@ const Home = () => {
                   </CardActions>
                 </Panel>
               </Grid>
-              <Grid item xs={10} lg={11}>
+              <Grid item xs={9} lg={10}>
                 <Paper elevation={2}>
                   <TextInput
                     variant="filled"
@@ -151,7 +202,16 @@ const Home = () => {
                 </Paper>
               </Grid>
               <Grid item xs={2} lg={1}>
-                <Button variant="contained">
+                <Button
+                  variant="contained"
+                  onClick={prevSearch}
+                  disabled={page > 1 ? false : true}
+                >
+                  <NavigateBeforeIcon />
+                </Button>
+              </Grid>
+              <Grid item xs={2} lg={1}>
+                <Button variant="contained" onClick={nextSearch}>
                   <NavigateNextIcon />
                 </Button>
               </Grid>
@@ -180,11 +240,14 @@ const Home = () => {
                           </Typography>
                         </CardContent>
                       </Box>
-                      <CardMedia
-                        sx={{ height: 150 }}
-                        component="img"
-                        image={imgs[parseInt(Math.random() * (5 - 1) + 1)]}
-                      />
+                      {images[row.id] && (
+                        <CardMedia
+                          sx={{ height: 150 }}
+                          component="img"
+                          image={images[row.id]}
+                          // image={imgs[parseInt(Math.random() * (5 - 1) + 1)]}
+                        />
+                      )}
                     </Card>
                   )}
                 </Grid>

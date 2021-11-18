@@ -8,6 +8,7 @@ const FifaContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [players, setPlayers] = useState([]);
   const [images, setImages] = useState({});
+  const [page, setPage] = useState(0);
 
   return (
     <FifaContext.Provider
@@ -20,6 +21,8 @@ const FifaContextProvider = ({ children }) => {
         setPlayers,
         images,
         setImages,
+        page,
+        setPage,
       }}
     >
       {children}
