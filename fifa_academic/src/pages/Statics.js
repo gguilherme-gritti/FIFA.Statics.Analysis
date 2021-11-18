@@ -26,6 +26,12 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+import StarIcon from "@mui/icons-material/Star";
+import CallMadeIcon from "@mui/icons-material/CallMade";
+import AddModeratorIcon from "@mui/icons-material/AddModerator";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 /* Controller  */
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -58,14 +64,10 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
                 </Typography>
               </Grid>
               <Grid item>
-                <Chip
-                  variant="outlined"
-                  label={`Posição: ${dataPlayer.position}`}
-                />
+                <Chip label={`Posição: ${dataPlayer.position}`} />
               </Grid>
               <Grid item>
                 <Chip
-                  variant="outlined"
                   label={`Perna: ${
                     dataPlayer.foot
                       ? dataPlayer.foot === "Right"
@@ -80,8 +82,8 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
         </AppBar>
       </Box>
       <DialogContent>
-        <Grid container spacing={3}>
-          <Grid item lg>
+        <Grid container justifyContent="center" alignItems="center" spacing={3}>
+          <Grid item lg={6}>
             <List
               sx={{
                 width: "100%",
@@ -92,7 +94,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <ImageIcon />
+                    <StarIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -104,7 +106,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <ImageIcon />
+                    <CallMadeIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -116,7 +118,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <ImageIcon />
+                    <AddModeratorIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -128,7 +130,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <WorkIcon />
+                    <DoubleArrowIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -136,11 +138,20 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
                   secondary={<Chip label={dataPlayer.pace} />}
                 />
               </ListItem>
-              <Divider variant="inset" component="li" />
+            </List>
+          </Grid>
+          <Grid item lg={6}>
+            <List
+              sx={{
+                width: "100%",
+                maxWidth: 360,
+                bgcolor: "background.paper",
+              }}
+            >
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <BeachAccessIcon />
+                    <SportsSoccerIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -152,7 +163,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <BeachAccessIcon />
+                    <SportsSoccerIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -164,7 +175,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <BeachAccessIcon />
+                    <DirectionsWalkIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -176,7 +187,7 @@ const Statics = ({ open, setOpen, dataPlayer }) => {
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
-                    <BeachAccessIcon />
+                    <SportsSoccerIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
